@@ -1,0 +1,23 @@
+const db = require('quick.db');
+
+exports.run = async (client, message, args, dil) => {
+if(args[0] === "kapat") {
+  db.delete(`sunucular.${message.guild.id}.koruma`)
+  message.channel.send(` Self-bot koruması kapatıldı`)
+} else if(args[0] === "aç") {
+  db.set(`sunucular.${message.guild.id}.koruma`, `aktif`)
+  message.channel.send(' Self-Bot koruması başarıyla **aktif** olarak ayarlandı!')
+} else return message.reply(dil.doğrukullanım)
+}
+// Code Universe
+exports.conf = {
+  enabled: true,
+  guildOnly: true,
+  aliases: [],
+  permLevel: 3,
+  kategori: "Koruma-Sistem"
+};
+
+exports.help = {
+  name: 'self-koruma'
+};
